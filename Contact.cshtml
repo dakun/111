@@ -1,0 +1,82 @@
+﻿@model Nail.Others.Models.ContactViewModel
+@{
+	ViewBag.Title = "Contact";
+	Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}	<div style="margin-top: 5px;"><img src="/App_Themes/Site/banner/05.jpg" /></div>
+	<div class="school">
+			<div class="school-left">
+				<div class="school-bu">
+					<div class="image-click f_l">
+						<a href="/news/bulletin" title="学院公告" style="display: block; width: 120px; height: 41px;"></a>
+						<h2 style="display: none;">学院公告</h2>
+					</div>
+					<div class="more f_r">
+						<a href="/course/index" title="学院公告">更多>></a>
+					</div>
+				</div>
+				<div class="school-color">
+					<ul>
+						@foreach (var item in Nail.Helpers.ListHelper.GetBulletin().Take(8))
+	 {
+						<li>
+							<div class="school-color-l"><a href="/news/bulletin" title="@item.BlogTitle">-@Html.Raw(item.BlogTitle)</a></div>
+							<div class="school-color-r">@item.DateCreated.ToString("yyy-MM-dd")</div>
+						</li>
+	 }
+					</ul>
+				</div>
+			</div>
+			<div class="school-right">
+				<div id="content">
+					<div class="box-header contact-header ">
+						<div class="image-click f_l">
+							<a href="#" style="display: block; width: 120px; height: 41px;"></a>
+						</div>
+					</div>
+					<div class="contact-left">
+							@if (ViewBag.ThankYou != null)
+				{
+				<h1>谢谢</h1>
+	 
+				<p>谢谢您发的邮件，我们将在48小时之内联系您</p>
+				}
+				else
+				{
+				<p>如果有任何问题，请通过邮件联系我们,我们将在48小时之内联系您。</p>
+					using (Html.BeginForm())
+					{
+		
+								<div class="contact-d1">
+									<label>姓名：</label>
+									@Html.TextBoxFor(m => m.ContactName, new { @class = "contact-text" })
+									@Html.ValidationMessageFor(m => m.ContactName)
+								</div>
+								<div class="contact-d1">
+									<label>邮箱：</label>
+									@Html.TextBoxFor(m => m.Email, new { @class = "contact-text" })
+									@Html.ValidationMessageFor(m => m.Email)
+								</div>
+								<div class="contact-d1">
+									<label>内容：</label>
+									@Html.TextAreaFor(m => m.Message, new { @class = "contact-text" })
+									@Html.ValidationMessageFor(m => m.Message)
+								</div>
+								<div class="contact-d1">
+									<label>1+2=?</label>@Html.TextBoxFor(m => m.SumCheck, new { @class = "contact-text" })
+									@Html.ValidationMessageFor(m => m.SumCheck)
+								</div>
+								<div class="contact-d1"><label></label><button type="submit" class="contact-b1">发送</button></div>
+					}
+				}
+
+						</div>
+						<div class="contact-right">
+							<p>我们的联系方式</p>
+							<p>电话：010 - 83558412</p>
+							<p>QQ：1224232834</p>
+							<p>邮箱：332368244@qq.com</p>
+						</div>
+					</div>
+				</div>
+			</div>
+

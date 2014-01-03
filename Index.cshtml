@@ -1,0 +1,77 @@
+﻿@model Hammer.Core.Models.Blog
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+<div style="margin-top: 5px;"><img src="/App_Themes/Site/banner/05.jpg" /></div>
+<div class="company-inf">
+	<div class="box-header company-header ">
+		<div class="image-click f_l">
+			<a href="#" title="公司简介" style="display: block; width: 120px; height: 41px;"></a>
+			<h2 style="display: none;">公司简介</h2>
+		</div>
+		<div class="company-date">
+			现在时间：@DateTime.Now.ToString("yyy-MM-dd")
+		</div>
+	</div>
+	<div class="company-inf-content">
+		<div>
+			<p><img src="@Model.PictureFolder/@Model.PictureFile"style="float: right; width: 300px;">
+			@Html.Raw(Model.BlogContent)
+		</p>
+		</div>
+	</div>
+</div>
+@*<div class="f_l sidebar">
+	<div class="box-header bulletin">
+	</div>
+	<div class="company-inf-content">
+		<ul class="list">
+		@foreach (var item in Nail.Helpers.ListHelper.GetBulletin().OrderByDescending(m => m.DateCreated).Take(10))
+  {
+				<li>
+					<div class="school-color-l1"><a href="/news/bulletin">-@Html.Raw(item.BlogTitle)</a></div>
+					<div class="school-color-r1">@item.DateCreated.ToString("yyy-MM-dd")</div>
+				</li>
+  }
+		</ul>
+	</div>
+</div>*@
+<div class="f_l sidebar">
+	<div class="box-header news-header">
+	<div class="image-click f_l">
+			<a href="/news" title="学院动态" style="display: block; width: 120px; height: 41px;"></a>
+			<h2 style="display: none;">学院动态</h2>
+		</div>
+	</div>
+	<div class="company-inf-content">
+		<ul class="list">
+		@foreach (var item in Nail.Helpers.ListHelper.GetNews().OrderByDescending(m => m.DateCreated).Take(8))
+  {
+				<li>
+					<div class="school-color-l1"><a href="news/detail/@item.BlogID" title="@item.BlogTitle">-@item.BlogTitle</a></div>
+					<div class="school-color-r1">@item.DateCreated.ToString("yyy-MM-dd")</div>
+				</li>
+  }
+		</ul>
+	</div>
+</div>
+<div class="f_l sidebar">
+<div class="box-header classes m_t">
+<div class="image-click f_l">
+			<a href="/course" title="课程介绍" style="display: block; width: 120px; height: 41px;"></a>
+			<h2 style="display: none;">课程介绍</h2>
+		</div>
+	</div>
+	<div class="company-inf-content">
+		<ul class="list">
+		@foreach (var item in Nail.Helpers.ListHelper.GetCourse().OrderByDescending(m => m.DateCreated).Take(10))
+  {
+				<li>
+					<div class="school-color-l1"><a href="/course" title="@item.BlogTitle">-@Html.Raw(item.BlogTitle)</a></div>
+					<div class="school-color-r1">@item.DateCreated.ToString("yyy-MM-dd")</div>
+				</li>
+  }
+		</ul>
+	</div>
+</div>
